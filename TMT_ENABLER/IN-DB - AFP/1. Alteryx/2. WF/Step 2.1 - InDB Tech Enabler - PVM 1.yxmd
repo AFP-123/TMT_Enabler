@@ -1,0 +1,2471 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2023.1">
+  <Nodes>
+    <Node ToolID="77">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="65" y="676" width="2281" height="376" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Cust Retention PVM</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Cust Retention PVM</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="1">
+          <GuiSettings Plugin="LockInGui.LockInInput.LockInInput">
+            <Position x="90" y="725" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Connection>SUBSCRIPTION_ACCEL</Connection>
+              <Query>select * 
+from "SUBSCRIPTION_ACCEL"."OUTPUT"."CUST_RETENTION"</Query>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Source=SUBSCRIPTION_ACCEL
+Query=select * 
+from "SUBSCRIPTIO...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInInput" />
+        </Node>
+        <Node ToolID="13">
+          <GuiSettings Plugin="LockInGui.LockInJoin.LockInJoin">
+            <Position x="305" y="725" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <JoinMode>LEFT</JoinMode>
+              <JoinFields>
+                <JoinInfo connection="Left">
+                  <Field field="CustName" />
+                  <Field field="Current Period" />
+                  <Field field="Period" />
+                </JoinInfo>
+                <JoinInfo connection="Right">
+                  <Field field="CustName" />
+                  <Field field="Current Period" />
+                  <Field field="Period" />
+                </JoinInfo>
+              </JoinFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Left Outer Join</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInJoin" />
+        </Node>
+        <Node ToolID="15">
+          <GuiSettings Plugin="LockInGui.LockInSelect.LockInSelect">
+            <Position x="402" y="725" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="R_Amount" selected="False" />
+                <SelectField field="R_CustName" selected="False" />
+                <SelectField field="R_Current Period" selected="False" />
+                <SelectField field="R_Period" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInSelect" />
+        </Node>
+        <Node ToolID="24">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="498" y="725" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="ASP" type="Double" expression="CASE &#xD;&#xA;    WHEN &quot;EoP$&quot; != 0 AND &quot;Quantity&quot; != 0 THEN &quot;EoP$&quot; / &quot;Quantity&quot; &#xD;&#xA;    ELSE 0 &#xD;&#xA;END&#xD;&#xA;" />
+                <FormulaField field="PP ASP" type="Double" expression="CASE &#xD;&#xA;    WHEN &quot;BoP$&quot; != 0 AND &quot;PP Quantity&quot; != 0 THEN &quot;BoP$&quot; / &quot;PP Quantity&quot; &#xD;&#xA;    ELSE 0 &#xD;&#xA;END&#xD;&#xA; " />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>ASP=CASE 
+    WHEN "EoP$" != 0 AND "Quantity" != 0 THEN "EoP...
+PP ASP=CASE 
+    WHEN "BoP$" != 0 AND "PP Quantity" != 0 THE...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="49">
+          <GuiSettings Plugin="LockInGui.LockInFilter.LockInFilter">
+            <Position x="186" y="726" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Field>Amount</Field>
+                <Operator>=</Operator>
+                <Operands>
+                  <Operand>ARR</Operand>
+                </Operands>
+              </Simple>
+              <ValidateBeforeRun value="True" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>"Amount" = 'ARR'</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFilter" />
+        </Node>
+        <Node ToolID="52">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="690" y="725" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Change in Price" type="Double" expression="&quot;ASP&quot;-&quot;PP ASP&quot;" />
+                <FormulaField field="Change in Quantity" type="V_WString" expression="&quot;Quantity&quot;-&quot;PP Quantity&quot;" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Change in Price="ASP"-"PP ASP"
+Change in Quantity="Quantity"-"PP Quantity"</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="53">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="594" y="726" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="PP ASP" type="Double" expression="CASE WHEN &quot;PP ASP&quot; IS NULL THEN 0 ELSE &quot;PP ASP&quot; END" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>PP ASP=CASE WHEN "PP ASP" IS NULL THEN 0 ELSE "PP ASP" END</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="54">
+          <GuiSettings Plugin="LockInGui.LockInFilter.LockInFilter">
+            <Position x="786" y="725" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Custom</Mode>
+              <Expression>UPPER("RetentionCategory") IN ('INCREASE','DECREASE')</Expression>
+              <ValidateBeforeRun value="True" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>UPPER("RetentionCategory") IN ('INCREASE','DECREASE')</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFilter" />
+        </Node>
+        <Node ToolID="57">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="882" y="725" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Increase_Price" type="Double" expression="CASE WHEN&#xD;&#xA;&quot;Change in Price&quot;&gt;0 and &quot;YoY Variance&quot;&gt;0 THEN &quot;Change in Price&quot;*&quot;PP Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_Price_w/Net_Upsell" type="Double" expression="CASE WHEN &#xD;&#xA;&quot;Change in Price&quot;&lt;0 and &quot;YoY Variance&quot;&gt;0 THEN &quot;Change in Price&quot;*&quot;PP Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_Price" type="Double" expression="CASE WHEN&#xD;&#xA;&quot;Change in Price&quot;&lt;0 and &quot;YoY Variance&quot;&lt;0 THEN &quot;Change in Price&quot;*&quot;PP Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Increase_Price_w/Net_Downsell" type="Double" expression="CASE WHEN&#xD;&#xA;&quot;Change in Price&quot;&gt;0 and &quot;YoY Variance&quot;&lt;0 THEN &quot;Change in Price&quot;*&quot;PP Quantity&quot; ELSE 0 END" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Increase_Price=CASE WHEN
+"Change in Price"&gt;0 and "YoY Varian...
+Decrease_Price_w/Net_Upsell=CASE WHEN 
+"Change in Price"&lt;0 a...
+Decrease_Price=CASE WHEN
+"Change in Price"&lt;0 and "YoY Varian...
+...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="58">
+          <GuiSettings Plugin="LockInGui.LockInSelect.LockInSelect">
+            <Position x="1386" y="726" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="YoY Variance" selected="False" />
+                <SelectField field="RetentionCategory" selected="False" />
+                <SelectField field="Increase$" selected="False" />
+                <SelectField field="Decrease$" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInSelect" />
+        </Node>
+        <Node ToolID="60">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="978" y="726" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Increase" type="Double" expression="&quot;Increase$&quot;-&quot;Increase_Price&quot;-&quot;Decrease_Price_w/Net_Upsell&quot;" />
+                <FormulaField field="Decrease" type="Double" expression="&quot;Decrease$&quot;-&quot;Decrease_Price&quot;-&quot;Increase_Price_w/Net_Downsell&quot;" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Increase="Increase$"-"Increase_Price"-"Decrease_Price_w/Net_U...
+Decrease="Decrease$"-"Decrease_Price"-"Increase_Price_w/Net_D...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="61">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="1266" y="726" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Check" type="FixedDecimal" expression="&quot;BoP$&quot;+&quot;ChurnCust$&quot;+&quot;Decrease_TempLost&quot;+&quot;Increase_TempNew&quot;+&quot;NewCust$&quot;+&quot;Increase_Price&quot;+&quot;Decrease_Price_w/Net_Upsell&quot;+&quot;Increase&quot;+&quot;Decrease_Price&quot;+&quot;Increase_Price_w/Net_Downsell&quot;+&quot;Decrease&quot;-&quot;EoP$&quot;+&quot;Decrease_Volume_w/Net_Upsell&quot;+&quot;Increase_Volume_w/Net_Downsell&quot;" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Check="BoP$"+"ChurnCust$"+"Decrease_TempLost"+"Increase_TempN...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="63">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="1074" y="726" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Decrease_Volume_w/Net_Upsell" type="Double" expression="CASE WHEN &quot;Increase&quot;&lt;0 THEN &quot;Increase&quot; ELSE 0 END" />
+                <FormulaField field="Increase_Volume_w/Net_Downsell" type="Double" expression="CASE WHEN &quot;Decrease&quot;&gt;0 THEN &quot;Decrease&quot; ELSE 0 END" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Decrease_Volume_w/Net_Upsell=CASE WHEN "Increase"&lt;0 THEN "Inc...
+Increase_Volume_w/Net_Downsell=CASE WHEN "Decrease"&gt;0 THEN "D...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="64">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="1170" y="726" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Increase" type="Double" expression="&quot;Increase&quot;-&quot;Decrease_Volume_w/Net_Upsell&quot;" />
+                <FormulaField field="Decrease" type="Double" expression="&quot;Decrease&quot;-&quot;Increase_Volume_w/Net_Downsell&quot;" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Increase="Increase"-"Decrease_Volume_w/Net_Upsell"
+Decrease="Decrease"-"Increase_Volume_w/Net_Downsell"</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="65">
+          <GuiSettings Plugin="LockInGui.LockInOutput.LockInOutput">
+            <Position x="1482" y="726" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormatSpecificOptions />
+              <Table>SUBSCRIPTION_ACCEL.INTER.INTER_1</Table>
+              <CreateMode>Overwrite</CreateMode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Table=SUBSCRIPTION_ACCEL.INTER.INTER_1</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInOutput" />
+        </Node>
+        <Node ToolID="66">
+          <GuiSettings Plugin="LockInGui.LockInDynamicOutput.LockInDynamicOutput">
+            <Position x="1566" y="726" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OutputFields>Connection Name</OutputFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInDynamicOutput" />
+        </Node>
+        <Node ToolID="67">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="1650" y="726" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="'&#xA;SELECT *,&#xA;FROM SUBSCRIPTION_ACCEL.INTER.INTER_1 &#xA;UNPIVOT(&quot;YoY Variance&quot; for &quot;RetentionCategory&quot; in (&quot;Increase_Price&quot;,&quot;Decrease_Price_w/Net_Upsell&quot;,&quot;Decrease_Price&quot;,&quot;Increase_Price_w/Net_Downsell&quot;,&quot;Increase&quot;,&quot;Decrease&quot;,&quot;Decrease_Volume_w/Net_Upsell&quot;,&quot;Increase_Volume_w/Net_Downsell&quot;))&#xA;'" field="Query" size="1073741823" type="V_WString" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Query = '
+SELECT *,
+FROM SUBSCRIPTION_ACCEL.INTER.INTER_1 
+UNPIVOT("YoY Variance...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="68">
+          <GuiSettings Plugin="LockInGui.LockInDynamicInput.LockInDynamicInput">
+            <Position x="1734" y="726" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ConnectionNameField>Connection Name</ConnectionNameField>
+              <QueryField>Query</QueryField>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInDynamicInput" />
+        </Node>
+        <Node ToolID="69">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="2022" y="726" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="IncreasePrice$" type="Double" expression="case when &quot;RetentionCategory&quot;='Increase_Price' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Increase_DecreasePrice$" type="Double" expression="case when &quot;RetentionCategory&quot;='Increase_DecreasePrice' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Decrease_IncreasePrice$" type="Double" expression="case when &quot;RetentionCategory&quot;='Decrease_IncreasePrice' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Increase$" type="FixedDecimal" expression="case when &quot;RetentionCategory&quot;='Increase' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Decrease$" type="FixedDecimal" expression="case when &quot;RetentionCategory&quot;='Decrease' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Increase_DecreaseVolume$" type="Double" expression="case when &quot;RetentionCategory&quot;='Increase_DecreaseVolume' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Decrease_IncreaseVolume$" type="Double" expression="case when &quot;RetentionCategory&quot;='Decrease_IncreaseVolume' then &quot;YoY Variance&quot; else 0 end" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>IncreasePrice$=case when "RetentionCategory"='Increase_Price'...
+Increase_DecreasePrice$=case when "RetentionCategory"='Increa...
+Decrease_IncreasePrice$=case when "RetentionCategory"='Decrea...
+...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="70">
+          <GuiSettings Plugin="LockInGui.LockInUnion.LockInUnion">
+            <Position x="1926" y="726" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>ByName</Mode>
+              <FieldMode>All</FieldMode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInUnion" />
+        </Node>
+        <Node ToolID="71">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="2118" y="726" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Increase_Change in Volume" type="Double" expression="CASE WHEN &quot;Increase$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_Change in Volume" type="Double" expression="CASE WHEN &quot;Decrease$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_IncreaseVolume_Change in Volume" type="Double" expression="CASE WHEN &quot;Decrease_IncreaseVolume$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_Volume_w/Net_Upsell Change in Volume" type="Double" expression="case when &quot;Increase_DecreaseVolume$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="ChurnCust Change in Volume" type="Double" expression="case when &quot;ChurnCust$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="NewCust Change in Volume" type="Double" expression="case when &quot;NewCust$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_TempLost Change in Volume" type="Double" expression="case when &quot;Decrease_TempLost&quot;!=0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Increase_TempNew Change in Volume" type="Double" expression="case when &quot;Increase_TempNew&quot;!=0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Increase_Change in Volume=CASE WHEN "Increase$"&lt;&gt;0 THEN "Chan...
+Decrease_Change in Volume=CASE WHEN "Decrease$"&lt;&gt;0 THEN "Chan...
+Decrease_IncreaseVolume_Change in Volume=CASE WHEN "Decrease_...
+...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="72">
+          <GuiSettings Plugin="LockInGui.LockInOutput.LockInOutput">
+            <Position x="2214" y="726" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormatSpecificOptions />
+              <Table>SUBSCRIPTION_ACCEL.OUTPUT.CUST_RETENTION_w/PVM</Table>
+              <CreateMode>Overwrite</CreateMode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Table=SUBSCRIPTION_ACCEL.OUTPUT.CUST_RETENTION_w/PVM</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInOutput" />
+        </Node>
+        <Node ToolID="73">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="1830" y="726" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="RetentionCategory" type="V_WString" expression="CASE WHEN &quot;RetentionCategory&quot;=&#xD;&#xA;'Decrease_Price_w/Net_Upsell' then 'Increase_DecreasePrice'&#xD;&#xA;when &quot;RetentionCategory&quot;=&#xD;&#xA;'Increase_Price_w/Net_Downsell' then 'Decrease_IncreasePrice'&#xD;&#xA;when &quot;RetentionCategory&quot;=&#xD;&#xA;'Decrease_Volume_w/Net_Upsell' then 'Increase_DecreaseVolume'&#xD;&#xA;when &quot;RetentionCategory&quot; =&#xD;&#xA;'Increase_Volume_w/Net_Downsell' then 'Decrease_IncreaseVolume'&#xD;&#xA;else &quot;RetentionCategory&quot;&#xD;&#xA;end " />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>RetentionCategory=CASE WHEN "RetentionCategory"=
+'Decrease_P...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="102">
+          <GuiSettings Plugin="LockInGui.LockInSummarize.LockInSummarize">
+            <Position x="246" y="798" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="CustName" action="GroupBy" rename="CustName" />
+                <SummarizeField field="Current Period" action="GroupBy" rename="Current Period" />
+                <SummarizeField field="Period" action="GroupBy" rename="Period" />
+                <SummarizeField field="Quantity" action="Sum" rename="Quantity" />
+                <SummarizeField field="PP Quantity" action="Sum" rename="PP Quantity" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInSummarize" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="76">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="76" y="64" width="1330" height="510" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>BoP Quantity for YoY, QoQ &amp; MoM</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>BoP Quantity for YoY, QoQ &amp; MoM</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="4">
+          <GuiSettings Plugin="LockInGui.LockInSummarize.LockInSummarize">
+            <Position x="198" y="113" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="CustID" action="GroupBy" rename="CustID" />
+                <SummarizeField field="Current Period" action="GroupBy" rename="Current Period" />
+                <SummarizeField field="Quantity" action="Sum" rename="Quantity" />
+                <SummarizeField field="Product" action="GroupBy" rename="Product" />
+                <SummarizeField field="Revenue Type" action="GroupBy" rename="Revenue Type" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInSummarize" />
+        </Node>
+        <Node ToolID="5">
+          <GuiSettings Plugin="LockInGui.LockInSummarize.LockInSummarize">
+            <Position x="318" y="330" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="CustID" action="GroupBy" rename="CustID" />
+                <SummarizeField field="Product" action="GroupBy" rename="Product" />
+                <SummarizeField field="Revenue Type" action="GroupBy" rename="Revenue Type" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInSummarize" />
+        </Node>
+        <Node ToolID="6">
+          <GuiSettings Plugin="LockInGui.LockInSummarize.LockInSummarize">
+            <Position x="318" y="234" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="Current Period" action="GroupBy" rename="Current Period" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInSummarize" />
+        </Node>
+        <Node ToolID="7">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="390" y="234" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Join" type="Int16" expression="1" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="2">
+              <Name />
+              <DefaultAnnotationText>Join=1</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="8">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="390" y="330" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Join" type="Int16" expression="1" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Join=1</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="9">
+          <GuiSettings Plugin="LockInGui.LockInJoin.LockInJoin">
+            <Position x="498" y="222" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <JoinMode>INNER</JoinMode>
+              <JoinFields>
+                <JoinInfo connection="Left">
+                  <Field field="Join" />
+                </JoinInfo>
+                <JoinInfo connection="Right">
+                  <Field field="Join" />
+                </JoinInfo>
+              </JoinFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Inner Join</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInJoin" />
+        </Node>
+        <Node ToolID="10">
+          <GuiSettings Plugin="LockInGui.LockInJoin.LockInJoin">
+            <Position x="690" y="113" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <JoinMode>LEFT</JoinMode>
+              <JoinFields>
+                <JoinInfo connection="Left">
+                  <Field field="Current Period" />
+                  <Field field="CustID" />
+                  <Field field="Product" />
+                  <Field field="Revenue Type" />
+                </JoinInfo>
+                <JoinInfo connection="Right">
+                  <Field field="Current Period" />
+                  <Field field="CustID" />
+                  <Field field="Product" />
+                  <Field field="Revenue Type" />
+                </JoinInfo>
+              </JoinFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Left Outer Join</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInJoin" />
+        </Node>
+        <Node ToolID="11">
+          <GuiSettings Plugin="LockInGui.LockInSelect.LockInSelect">
+            <Position x="570" y="222" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Join" selected="False" />
+                <SelectField field="R_Join" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInSelect" />
+        </Node>
+        <Node ToolID="12">
+          <GuiSettings Plugin="LockInGui.LockInSummarize.LockInSummarize">
+            <Position x="318" y="113" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="Current Period" action="GroupBy" rename="Current Period" />
+                <SummarizeField field="CustID" action="GroupBy" rename="CustID" />
+                <SummarizeField field="Quantity" action="Sum" rename="Quantity" />
+                <SummarizeField field="Product" action="GroupBy" rename="Product" />
+                <SummarizeField field="Revenue Type" action="GroupBy" rename="Revenue Type" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInSummarize" />
+        </Node>
+        <Node ToolID="14">
+          <GuiSettings Plugin="LockInGui.LockInSelect.LockInSelect">
+            <Position x="774" y="113" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="CustID" selected="True" rename="CustName" />
+                <SelectField field="R_Current Period" selected="False" />
+                <SelectField field="R_CustID" selected="False" />
+                <SelectField field="R_Product" selected="False" />
+                <SelectField field="R_Revenue Type" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInSelect" />
+        </Node>
+        <Node ToolID="22">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="894" y="113" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Current Period" type="Date" expression="DATE_TRUNC('month', &quot;Current Period&quot;)&#xD;&#xA;" />
+                <FormulaField field="Quantity" type="Double" expression="case when &quot;Quantity&quot; is null then 0 else &quot;Quantity&quot; end" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Current Period=DATE_TRUNC('month', "Current Period")
+
+Quantity=case when "Quantity" is null then 0 else "Quantity" end</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="41">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="1086" y="113" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="PP Quantity" type="Double" expression="lag(&quot;Quantity&quot;,12) over (partition by &quot;CustName&quot;,&quot;Product&quot;,&quot;Revenue Type&quot; order by &quot;CustName&quot;,&quot;Product&quot;,&quot;Revenue Type&quot;,&quot;Current Period&quot;)" />
+                <FormulaField field="Period" type="V_String" expression="'Year'" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>PP Quantity=lag("Quantity",12) over (partition by "CustName",...
+Period='Year'</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="42">
+          <GuiSettings Plugin="LockInGui.LockInSummarize.LockInSummarize">
+            <Position x="990" y="113" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="CustName" action="GroupBy" rename="CustName" />
+                <SummarizeField field="Current Period" action="GroupBy" rename="Current Period" />
+                <SummarizeField field="Quantity" action="Sum" rename="Quantity" />
+                <SummarizeField field="Product" action="GroupBy" rename="Product" />
+                <SummarizeField field="Revenue Type" action="GroupBy" rename="Revenue Type" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInSummarize" />
+        </Node>
+        <Node ToolID="43">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="1098" y="258" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="PP Quantity" type="Double" expression="lag(&quot;Quantity&quot;,3) over (partition by &quot;CustName&quot;,&quot;Product&quot;,&quot;Revenue Type&quot; order by &quot;CustName&quot;,&quot;Product&quot;,&quot;Revenue Type&quot;,&quot;Current Period&quot;)" />
+                <FormulaField field="Period" type="V_String" expression="'Quarter'" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>PP Quantity=lag("Quantity",3) over (partition by "CustName","...
+Period='Quarter'</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="44">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="1098" y="414" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="PP Quantity" type="Double" expression="lag(&quot;Quantity&quot;,1) over (partition by &quot;CustName&quot;,&quot;Product&quot;,&quot;Revenue Type&quot; order by &quot;CustName&quot;,&quot;Product&quot;,&quot;Revenue Type&quot;,&quot;Current Period&quot;)" />
+                <FormulaField field="Period" type="V_String" expression="'Month'" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>PP Quantity=lag("Quantity",1) over (partition by "CustName","...
+Period='Month'</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="45">
+          <GuiSettings Plugin="LockInGui.LockInUnion.LockInUnion">
+            <Position x="1194" y="113" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>ByName</Mode>
+              <FieldMode>All</FieldMode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInUnion" />
+        </Node>
+        <Node ToolID="48">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="1290" y="114" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="PP Quantity" type="Double" expression="CASE WHEN &quot;PP Quantity&quot; IS NULL THEN 0 ELSE &quot;PP Quantity&quot; END" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>PP Quantity=CASE WHEN "PP Quantity" IS NULL THEN 0 ELSE "PP Q...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="50">
+          <GuiSettings Plugin="LockInGui.LockInInput.LockInInput">
+            <Position x="101" y="113" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Connection>SUBSCRIPTION_ACCEL</Connection>
+              <Query>SELECT * FROM SUBSCRIPTION_ACCEL.SOURCE.PVM_INPUT</Query>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Source=SUBSCRIPTION_ACCEL
+Query=SELECT * FROM SUBSCRIPTION_A...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInInput" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="101">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="64" y="1133" width="2281" height="376" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Cust Prod Retention PVM</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Cust Prod Retention PVM</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="78">
+          <GuiSettings Plugin="LockInGui.LockInInput.LockInInput">
+            <Position x="89" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Connection>SUBSCRIPTION_ACCEL</Connection>
+              <Query>select * 
+from "SUBSCRIPTION_ACCEL"."OUTPUT"."CUST_PROD_RETENTION"</Query>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Source=SUBSCRIPTION_ACCEL
+Query=select * 
+from "SUBSCRIPTIO...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInInput" />
+        </Node>
+        <Node ToolID="79">
+          <GuiSettings Plugin="LockInGui.LockInJoin.LockInJoin">
+            <Position x="305" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <JoinMode>LEFT</JoinMode>
+              <JoinFields>
+                <JoinInfo connection="Left">
+                  <Field field="CustName" />
+                  <Field field="Current Period" />
+                  <Field field="Period" />
+                  <Field field="Product" />
+                </JoinInfo>
+                <JoinInfo connection="Right">
+                  <Field field="CustName" />
+                  <Field field="Current Period" />
+                  <Field field="Period" />
+                  <Field field="Product" />
+                </JoinInfo>
+              </JoinFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Left Outer Join</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInJoin" />
+        </Node>
+        <Node ToolID="80">
+          <GuiSettings Plugin="LockInGui.LockInSelect.LockInSelect">
+            <Position x="414" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="R_CustName" selected="False" />
+                <SelectField field="R_Current Period" selected="False" />
+                <SelectField field="R_Period" selected="False" />
+                <SelectField field="R_Product" selected="False" />
+                <SelectField field="R_Amount" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInSelect" />
+        </Node>
+        <Node ToolID="81">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="510" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="ASP" type="Double" expression="CASE &#xD;&#xA;    WHEN &quot;EoP$&quot; != 0 AND &quot;Quantity&quot; != 0 THEN &quot;EoP$&quot; / &quot;Quantity&quot; &#xD;&#xA;    ELSE 0 &#xD;&#xA;END&#xD;&#xA;" />
+                <FormulaField field="PP ASP" type="Double" expression="CASE &#xD;&#xA;    WHEN &quot;BoP$&quot; != 0 AND &quot;PP Quantity&quot; != 0 THEN &quot;BoP$&quot; / &quot;PP Quantity&quot; &#xD;&#xA;    ELSE 0 &#xD;&#xA;END&#xD;&#xA; " />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>ASP=CASE 
+    WHEN "EoP$" != 0 AND "Quantity" != 0 THEN "EoP...
+PP ASP=CASE 
+    WHEN "BoP$" != 0 AND "PP Quantity" != 0 THE...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="82">
+          <GuiSettings Plugin="LockInGui.LockInFilter.LockInFilter">
+            <Position x="186" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Field>Amount</Field>
+                <Operator>=</Operator>
+                <Operands>
+                  <Operand>ARR</Operand>
+                </Operands>
+              </Simple>
+              <ValidateBeforeRun value="True" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>"Amount" = 'ARR'</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFilter" />
+        </Node>
+        <Node ToolID="83">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="702" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Change in Price" type="Double" expression="&quot;ASP&quot;-&quot;PP ASP&quot;" />
+                <FormulaField field="Change in Quantity" type="V_WString" expression="&quot;Quantity&quot;-&quot;PP Quantity&quot;" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Change in Price="ASP"-"PP ASP"
+Change in Quantity="Quantity"-"PP Quantity"</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="84">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="606" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="PP ASP" type="Double" expression="CASE WHEN &quot;PP ASP&quot; IS NULL THEN 0 ELSE &quot;PP ASP&quot; END" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>PP ASP=CASE WHEN "PP ASP" IS NULL THEN 0 ELSE "PP ASP" END</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="85">
+          <GuiSettings Plugin="LockInGui.LockInFilter.LockInFilter">
+            <Position x="798" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Custom</Mode>
+              <Expression>UPPER("RetentionCategory") IN ('INCREASE','DECREASE')</Expression>
+              <ValidateBeforeRun value="True" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>UPPER("RetentionCategory") IN ('INCREASE','DECREASE')</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFilter" />
+        </Node>
+        <Node ToolID="86">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="894" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Increase_Price" type="Double" expression="CASE WHEN&#xD;&#xA;&quot;Change in Price&quot;&gt;0 and &quot;YoY Variance&quot;&gt;0 THEN &quot;Change in Price&quot;*&quot;PP Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_Price_w/Net_Upsell" type="Double" expression="CASE WHEN &#xD;&#xA;&quot;Change in Price&quot;&lt;0 and &quot;YoY Variance&quot;&gt;0 THEN &quot;Change in Price&quot;*&quot;PP Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_Price" type="Double" expression="CASE WHEN&#xD;&#xA;&quot;Change in Price&quot;&lt;0 and &quot;YoY Variance&quot;&lt;0 THEN &quot;Change in Price&quot;*&quot;PP Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Increase_Price_w/Net_Downsell" type="Double" expression="CASE WHEN&#xD;&#xA;&quot;Change in Price&quot;&gt;0 and &quot;YoY Variance&quot;&lt;0 THEN &quot;Change in Price&quot;*&quot;PP Quantity&quot; ELSE 0 END" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Increase_Price=CASE WHEN
+"Change in Price"&gt;0 and "YoY Varian...
+Decrease_Price_w/Net_Upsell=CASE WHEN 
+"Change in Price"&lt;0 a...
+Decrease_Price=CASE WHEN
+"Change in Price"&lt;0 and "YoY Varian...
+...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="87">
+          <GuiSettings Plugin="LockInGui.LockInSelect.LockInSelect">
+            <Position x="1398" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="YoY Variance" selected="False" />
+                <SelectField field="RetentionCategory" selected="False" />
+                <SelectField field="Increase$" selected="False" />
+                <SelectField field="Decrease$" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInSelect" />
+        </Node>
+        <Node ToolID="88">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="990" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Increase" type="Double" expression="&quot;Increase$&quot;-&quot;Increase_Price&quot;-&quot;Decrease_Price_w/Net_Upsell&quot;" />
+                <FormulaField field="Decrease" type="Double" expression="&quot;Decrease$&quot;-&quot;Decrease_Price&quot;-&quot;Increase_Price_w/Net_Downsell&quot;" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Increase="Increase$"-"Increase_Price"-"Decrease_Price_w/Net_U...
+Decrease="Decrease$"-"Decrease_Price"-"Increase_Price_w/Net_D...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="89">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="1278" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Check" type="FixedDecimal" expression="&quot;BoP$&quot;+&quot;ChurnCust$&quot;+&quot;Decrease_TempLost&quot;+&quot;Increase_TempNew&quot;+&quot;NewCust$&quot;+&quot;Increase_Price&quot;+&quot;Decrease_Price_w/Net_Upsell&quot;+&quot;Increase&quot;+&quot;Decrease_Price&quot;+&quot;Increase_Price_w/Net_Downsell&quot;+&quot;Decrease&quot;-&quot;EoP$&quot;+&quot;Decrease_Volume_w/Net_Upsell&quot;+&quot;Increase_Volume_w/Net_Downsell&quot;+&quot;ChurnProd$&quot;+&quot;NewProd$&quot;" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Check="BoP$"+"ChurnCust$"+"Decrease_TempLost"+"Increase_TempN...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="90">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="1086" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Decrease_Volume_w/Net_Upsell" type="Double" expression="CASE WHEN &quot;Increase&quot;&lt;0 THEN &quot;Increase&quot; ELSE 0 END" />
+                <FormulaField field="Increase_Volume_w/Net_Downsell" type="Double" expression="CASE WHEN &quot;Decrease&quot;&gt;0 THEN &quot;Decrease&quot; ELSE 0 END" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Decrease_Volume_w/Net_Upsell=CASE WHEN "Increase"&lt;0 THEN "Inc...
+Increase_Volume_w/Net_Downsell=CASE WHEN "Decrease"&gt;0 THEN "D...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="91">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="1182" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Increase" type="Double" expression="&quot;Increase&quot;-&quot;Decrease_Volume_w/Net_Upsell&quot;" />
+                <FormulaField field="Decrease" type="Double" expression="&quot;Decrease&quot;-&quot;Increase_Volume_w/Net_Downsell&quot;" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Increase="Increase"-"Decrease_Volume_w/Net_Upsell"
+Decrease="Decrease"-"Increase_Volume_w/Net_Downsell"</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="92">
+          <GuiSettings Plugin="LockInGui.LockInOutput.LockInOutput">
+            <Position x="1494" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormatSpecificOptions />
+              <Table>SUBSCRIPTION_ACCEL.INTER.INTER_2</Table>
+              <CreateMode>Overwrite</CreateMode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Table=SUBSCRIPTION_ACCEL.INTER.INTER_2</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInOutput" />
+        </Node>
+        <Node ToolID="93">
+          <GuiSettings Plugin="LockInGui.LockInDynamicOutput.LockInDynamicOutput">
+            <Position x="1566" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OutputFields>Connection Name</OutputFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInDynamicOutput" />
+        </Node>
+        <Node ToolID="94">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="1662" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="'&#xA;SELECT *,&#xA;FROM SUBSCRIPTION_ACCEL.INTER.INTER_2 &#xA;UNPIVOT(&quot;YoY Variance&quot; for &quot;RetentionCategory&quot; in (&quot;Increase_Price&quot;,&quot;Decrease_Price_w/Net_Upsell&quot;,&quot;Decrease_Price&quot;,&quot;Increase_Price_w/Net_Downsell&quot;,&quot;Increase&quot;,&quot;Decrease&quot;,&quot;Decrease_Volume_w/Net_Upsell&quot;,&quot;Increase_Volume_w/Net_Downsell&quot;))&#xA;'" field="Query" size="1073741823" type="V_WString" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Query = '
+SELECT *,
+FROM SUBSCRIPTION_ACCEL.INTER.INTER_2 
+UNPIVOT("YoY Variance...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="95">
+          <GuiSettings Plugin="LockInGui.LockInDynamicInput.LockInDynamicInput">
+            <Position x="1734" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ConnectionNameField>Connection Name</ConnectionNameField>
+              <QueryField>Query</QueryField>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInDynamicInput" />
+        </Node>
+        <Node ToolID="96">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="2022" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="IncreasePrice$" type="Double" expression="case when &quot;RetentionCategory&quot;='Increase_Price' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Increase_DecreasePrice$" type="Double" expression="case when &quot;RetentionCategory&quot;='Increase_DecreasePrice' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Decrease_IncreasePrice$" type="Double" expression="case when &quot;RetentionCategory&quot;='Decrease_IncreasePrice' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Increase$" type="FixedDecimal" expression="case when &quot;RetentionCategory&quot;='Increase' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Decrease$" type="FixedDecimal" expression="case when &quot;RetentionCategory&quot;='Decrease' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Increase_DecreaseVolume$" type="Double" expression="case when &quot;RetentionCategory&quot;='Increase_DecreaseVolume' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Decrease_IncreaseVolume$" type="Double" expression="case when &quot;RetentionCategory&quot;='Decrease_IncreaseVolume' then &quot;YoY Variance&quot; else 0 end" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>IncreasePrice$=case when "RetentionCategory"='Increase_Price'...
+Increase_DecreasePrice$=case when "RetentionCategory"='Increa...
+Decrease_IncreasePrice$=case when "RetentionCategory"='Decrea...
+...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="97">
+          <GuiSettings Plugin="LockInGui.LockInUnion.LockInUnion">
+            <Position x="1926" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>ByName</Mode>
+              <FieldMode>All</FieldMode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInUnion" />
+        </Node>
+        <Node ToolID="98">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="2118" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="False" />
+              <FormulaFields>
+                <FormulaField field="Increase_Change in Volume" type="Double" expression="CASE WHEN &quot;Increase$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_Change in Volume" type="Double" expression="CASE WHEN &quot;Decrease$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_IncreaseVolume_Change in Volume" type="Double" expression="CASE WHEN &quot;Decrease_IncreaseVolume$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_Volume_w/Net_Upsell Change in Volume" type="Double" expression="case when &quot;Increase_DecreaseVolume$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="ChurnCust Change in Volume" type="Double" expression="case when &quot;ChurnCust$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="NewCust Change in Volume" type="Double" expression="case when &quot;NewCust$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_TempLost Change in Volume" type="Double" expression="case when &quot;Decrease_TempLost&quot;!=0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Increase_TempNew Change in Volume" type="Double" expression="case when &quot;Increase_TempNew&quot;!=0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="ChurnProd Change in Volume" type="Double" expression="case when &quot;ChurnProd$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="NewProd Change in Volume" type="Double" expression="case when &quot;NewProd$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Increase_Change in Volume=CASE WHEN "Increase$"&lt;&gt;0 THEN "Chan...
+Decrease_Change in Volume=CASE WHEN "Decrease$"&lt;&gt;0 THEN "Chan...
+Decrease_IncreaseVolume_Change in Volume=CASE WHEN "Decrease_...
+...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="99">
+          <GuiSettings Plugin="LockInGui.LockInOutput.LockInOutput">
+            <Position x="2214" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormatSpecificOptions />
+              <Table>SUBSCRIPTION_ACCEL.OUTPUT.CUST_PROD_RETENTION_w/PVM</Table>
+              <CreateMode>Overwrite</CreateMode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Table=SUBSCRIPTION_ACCEL.OUTPUT.CUST_PROD_RETENTION_w/PVM</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInOutput" />
+        </Node>
+        <Node ToolID="100">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="1830" y="1182" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="RetentionCategory" type="V_WString" expression="CASE WHEN &quot;RetentionCategory&quot;=&#xD;&#xA;'Decrease_Price_w/Net_Upsell' then 'Increase_DecreasePrice'&#xD;&#xA;when &quot;RetentionCategory&quot;=&#xD;&#xA;'Increase_Price_w/Net_Downsell' then 'Decrease_IncreasePrice'&#xD;&#xA;when &quot;RetentionCategory&quot;=&#xD;&#xA;'Decrease_Volume_w/Net_Upsell' then 'Increase_DecreaseVolume'&#xD;&#xA;when &quot;RetentionCategory&quot; =&#xD;&#xA;'Increase_Volume_w/Net_Downsell' then 'Decrease_IncreaseVolume'&#xD;&#xA;else &quot;RetentionCategory&quot;&#xD;&#xA;end " />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>RetentionCategory=CASE WHEN "RetentionCategory"=
+'Decrease_P...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="103">
+          <GuiSettings Plugin="LockInGui.LockInSummarize.LockInSummarize">
+            <Position x="222" y="1278" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="CustName" action="GroupBy" rename="CustName" />
+                <SummarizeField field="Current Period" action="GroupBy" rename="Current Period" />
+                <SummarizeField field="Period" action="GroupBy" rename="Period" />
+                <SummarizeField field="Quantity" action="Sum" rename="Quantity" />
+                <SummarizeField field="PP Quantity" action="Sum" rename="PP Quantity" />
+                <SummarizeField field="Product" action="GroupBy" rename="Product" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInSummarize" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="128">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="64" y="1577" width="2281" height="376" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Cust Prod Retention PVM</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Cust Prod Retention PVM</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="104">
+          <GuiSettings Plugin="LockInGui.LockInInput.LockInInput">
+            <Position x="89" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Connection>SUBSCRIPTION_ACCEL</Connection>
+              <Query>select * 
+from "SUBSCRIPTION_ACCEL"."OUTPUT"."CUST_PROD_REVTYPE_RETENTION"</Query>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Source=SUBSCRIPTION_ACCEL
+Query=select * 
+from "SUBSCRIPTIO...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInInput" />
+        </Node>
+        <Node ToolID="105">
+          <GuiSettings Plugin="LockInGui.LockInJoin.LockInJoin">
+            <Position x="305" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <JoinMode>LEFT</JoinMode>
+              <JoinFields>
+                <JoinInfo connection="Left">
+                  <Field field="CustName" />
+                  <Field field="Current Period" />
+                  <Field field="Period" />
+                  <Field field="Product" />
+                  <Field field="Revenue Type" />
+                </JoinInfo>
+                <JoinInfo connection="Right">
+                  <Field field="CustName" />
+                  <Field field="Current Period" />
+                  <Field field="Period" />
+                  <Field field="Product" />
+                  <Field field="Revenue Type" />
+                </JoinInfo>
+              </JoinFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Left Outer Join</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInJoin" />
+        </Node>
+        <Node ToolID="106">
+          <GuiSettings Plugin="LockInGui.LockInSelect.LockInSelect">
+            <Position x="414" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="R_CustName" selected="False" />
+                <SelectField field="R_Current Period" selected="False" />
+                <SelectField field="R_Period" selected="False" />
+                <SelectField field="R_Product" selected="False" />
+                <SelectField field="R_Amount" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInSelect" />
+        </Node>
+        <Node ToolID="107">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="510" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="ASP" type="Double" expression="CASE &#xD;&#xA;    WHEN &quot;EoP$&quot; != 0 AND &quot;Quantity&quot; != 0 THEN &quot;EoP$&quot; / &quot;Quantity&quot; &#xD;&#xA;    ELSE 0 &#xD;&#xA;END&#xD;&#xA;" />
+                <FormulaField field="PP ASP" type="Double" expression="CASE &#xD;&#xA;    WHEN &quot;BoP$&quot; != 0 AND &quot;PP Quantity&quot; != 0 THEN &quot;BoP$&quot; / &quot;PP Quantity&quot; &#xD;&#xA;    ELSE 0 &#xD;&#xA;END&#xD;&#xA; " />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>ASP=CASE 
+    WHEN "EoP$" != 0 AND "Quantity" != 0 THEN "EoP...
+PP ASP=CASE 
+    WHEN "BoP$" != 0 AND "PP Quantity" != 0 THE...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="108">
+          <GuiSettings Plugin="LockInGui.LockInFilter.LockInFilter">
+            <Position x="186" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Field>Amount</Field>
+                <Operator>=</Operator>
+                <Operands>
+                  <Operand>ARR</Operand>
+                </Operands>
+              </Simple>
+              <ValidateBeforeRun value="True" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>"Amount" = 'ARR'</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFilter" />
+        </Node>
+        <Node ToolID="109">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="702" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Change in Price" type="Double" expression="&quot;ASP&quot;-&quot;PP ASP&quot;" />
+                <FormulaField field="Change in Quantity" type="V_WString" expression="&quot;Quantity&quot;-&quot;PP Quantity&quot;" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Change in Price="ASP"-"PP ASP"
+Change in Quantity="Quantity"-"PP Quantity"</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="110">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="606" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="PP ASP" type="Double" expression="CASE WHEN &quot;PP ASP&quot; IS NULL THEN 0 ELSE &quot;PP ASP&quot; END" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>PP ASP=CASE WHEN "PP ASP" IS NULL THEN 0 ELSE "PP ASP" END</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="111">
+          <GuiSettings Plugin="LockInGui.LockInFilter.LockInFilter">
+            <Position x="798" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Custom</Mode>
+              <Expression>UPPER("RetentionCategory") IN ('INCREASE','DECREASE')</Expression>
+              <ValidateBeforeRun value="True" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>UPPER("RetentionCategory") IN ('INCREASE','DECREASE')</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFilter" />
+        </Node>
+        <Node ToolID="112">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="894" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Increase_Price" type="Double" expression="CASE WHEN&#xD;&#xA;&quot;Change in Price&quot;&gt;0 and &quot;YoY Variance&quot;&gt;0 THEN &quot;Change in Price&quot;*&quot;PP Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_Price_w/Net_Upsell" type="Double" expression="CASE WHEN &#xD;&#xA;&quot;Change in Price&quot;&lt;0 and &quot;YoY Variance&quot;&gt;0 THEN &quot;Change in Price&quot;*&quot;PP Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_Price" type="Double" expression="CASE WHEN&#xD;&#xA;&quot;Change in Price&quot;&lt;0 and &quot;YoY Variance&quot;&lt;0 THEN &quot;Change in Price&quot;*&quot;PP Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Increase_Price_w/Net_Downsell" type="Double" expression="CASE WHEN&#xD;&#xA;&quot;Change in Price&quot;&gt;0 and &quot;YoY Variance&quot;&lt;0 THEN &quot;Change in Price&quot;*&quot;PP Quantity&quot; ELSE 0 END" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Increase_Price=CASE WHEN
+"Change in Price"&gt;0 and "YoY Varian...
+Decrease_Price_w/Net_Upsell=CASE WHEN 
+"Change in Price"&lt;0 a...
+Decrease_Price=CASE WHEN
+"Change in Price"&lt;0 and "YoY Varian...
+...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="113">
+          <GuiSettings Plugin="LockInGui.LockInSelect.LockInSelect">
+            <Position x="1398" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="YoY Variance" selected="False" />
+                <SelectField field="RetentionCategory" selected="False" />
+                <SelectField field="Increase$" selected="False" />
+                <SelectField field="Decrease$" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInSelect" />
+        </Node>
+        <Node ToolID="114">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="990" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Increase" type="Double" expression="&quot;Increase$&quot;-&quot;Increase_Price&quot;-&quot;Decrease_Price_w/Net_Upsell&quot;" />
+                <FormulaField field="Decrease" type="Double" expression="&quot;Decrease$&quot;-&quot;Decrease_Price&quot;-&quot;Increase_Price_w/Net_Downsell&quot;" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Increase="Increase$"-"Increase_Price"-"Decrease_Price_w/Net_U...
+Decrease="Decrease$"-"Decrease_Price"-"Increase_Price_w/Net_D...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="115">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="1278" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Check" type="FixedDecimal" expression="&quot;BoP$&quot;+&quot;ChurnCust$&quot;+&quot;Decrease_TempLost&quot;+&quot;Increase_TempNew&quot;+&quot;NewCust$&quot;+&quot;Increase_Price&quot;+&quot;Decrease_Price_w/Net_Upsell&quot;+&quot;Increase&quot;+&quot;Decrease_Price&quot;+&quot;Increase_Price_w/Net_Downsell&quot;+&quot;Decrease&quot;-&quot;EoP$&quot;+&quot;Decrease_Volume_w/Net_Upsell&quot;+&quot;Increase_Volume_w/Net_Downsell&quot;+&quot;ChurnProd$&quot;+&quot;NewProd$&quot;" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Check="BoP$"+"ChurnCust$"+"Decrease_TempLost"+"Increase_TempN...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="116">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="1086" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Decrease_Volume_w/Net_Upsell" type="Double" expression="CASE WHEN &quot;Increase&quot;&lt;0 THEN &quot;Increase&quot; ELSE 0 END" />
+                <FormulaField field="Increase_Volume_w/Net_Downsell" type="Double" expression="CASE WHEN &quot;Decrease&quot;&gt;0 THEN &quot;Decrease&quot; ELSE 0 END" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Decrease_Volume_w/Net_Upsell=CASE WHEN "Increase"&lt;0 THEN "Inc...
+Increase_Volume_w/Net_Downsell=CASE WHEN "Decrease"&gt;0 THEN "D...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="117">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="1182" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="Increase" type="Double" expression="&quot;Increase&quot;-&quot;Decrease_Volume_w/Net_Upsell&quot;" />
+                <FormulaField field="Decrease" type="Double" expression="&quot;Decrease&quot;-&quot;Increase_Volume_w/Net_Downsell&quot;" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Increase="Increase"-"Decrease_Volume_w/Net_Upsell"
+Decrease="Decrease"-"Increase_Volume_w/Net_Downsell"</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="118">
+          <GuiSettings Plugin="LockInGui.LockInOutput.LockInOutput">
+            <Position x="1494" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormatSpecificOptions />
+              <Table>SUBSCRIPTION_ACCEL.INTER.INTER_3</Table>
+              <CreateMode>Overwrite</CreateMode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Table=SUBSCRIPTION_ACCEL.INTER.INTER_3</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInOutput" />
+        </Node>
+        <Node ToolID="119">
+          <GuiSettings Plugin="LockInGui.LockInDynamicOutput.LockInDynamicOutput">
+            <Position x="1566" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OutputFields>Connection Name</OutputFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInDynamicOutput" />
+        </Node>
+        <Node ToolID="120">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="1662" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="'&#xA;SELECT *,&#xA;FROM SUBSCRIPTION_ACCEL.INTER.INTER_3 &#xA;UNPIVOT(&quot;YoY Variance&quot; for &quot;RetentionCategory&quot; in (&quot;Increase_Price&quot;,&quot;Decrease_Price_w/Net_Upsell&quot;,&quot;Decrease_Price&quot;,&quot;Increase_Price_w/Net_Downsell&quot;,&quot;Increase&quot;,&quot;Decrease&quot;,&quot;Decrease_Volume_w/Net_Upsell&quot;,&quot;Increase_Volume_w/Net_Downsell&quot;))&#xA;'" field="Query" size="1073741823" type="V_WString" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Query = '
+SELECT *,
+FROM SUBSCRIPTION_ACCEL.INTER.INTER_3 
+UNPIVOT("YoY Variance...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="121">
+          <GuiSettings Plugin="LockInGui.LockInDynamicInput.LockInDynamicInput">
+            <Position x="1734" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ConnectionNameField>Connection Name</ConnectionNameField>
+              <QueryField>Query</QueryField>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInDynamicInput" />
+        </Node>
+        <Node ToolID="122">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="2022" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="IncreasePrice$" type="Double" expression="case when &quot;RetentionCategory&quot;='Increase_Price' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Increase_DecreasePrice$" type="Double" expression="case when &quot;RetentionCategory&quot;='Increase_DecreasePrice' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Decrease_IncreasePrice$" type="Double" expression="case when &quot;RetentionCategory&quot;='Decrease_IncreasePrice' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Increase$" type="FixedDecimal" expression="case when &quot;RetentionCategory&quot;='Increase' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Decrease$" type="FixedDecimal" expression="case when &quot;RetentionCategory&quot;='Decrease' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Increase_DecreaseVolume$" type="Double" expression="case when &quot;RetentionCategory&quot;='Increase_DecreaseVolume' then &quot;YoY Variance&quot; else 0 end" />
+                <FormulaField field="Decrease_IncreaseVolume$" type="Double" expression="case when &quot;RetentionCategory&quot;='Decrease_IncreaseVolume' then &quot;YoY Variance&quot; else 0 end" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>IncreasePrice$=case when "RetentionCategory"='Increase_Price'...
+Increase_DecreasePrice$=case when "RetentionCategory"='Increa...
+Decrease_IncreasePrice$=case when "RetentionCategory"='Decrea...
+...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="123">
+          <GuiSettings Plugin="LockInGui.LockInUnion.LockInUnion">
+            <Position x="1926" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>ByName</Mode>
+              <FieldMode>All</FieldMode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInUnion" />
+        </Node>
+        <Node ToolID="124">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="2118" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="False" />
+              <FormulaFields>
+                <FormulaField field="Increase_Change in Volume" type="Double" expression="CASE WHEN &quot;Increase$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_Change in Volume" type="Double" expression="CASE WHEN &quot;Decrease$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_IncreaseVolume_Change in Volume" type="Double" expression="CASE WHEN &quot;Decrease_IncreaseVolume$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_Volume_w/Net_Upsell Change in Volume" type="Double" expression="case when &quot;Increase_DecreaseVolume$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="ChurnCust Change in Volume" type="Double" expression="case when &quot;ChurnCust$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="NewCust Change in Volume" type="Double" expression="case when &quot;NewCust$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Decrease_TempLost Change in Volume" type="Double" expression="case when &quot;Decrease_TempLost&quot;!=0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="Increase_TempNew Change in Volume" type="Double" expression="case when &quot;Increase_TempNew&quot;!=0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="ChurnProd Change in Volume" type="Double" expression="case when &quot;ChurnProd$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="NewProd Change in Volume" type="Double" expression="case when &quot;NewProd$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="ChurnType Change in Volume" type="Double" expression="case when &quot;ChurnRevType$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+                <FormulaField field="NewType Change in Volume" type="Double" expression="case when &quot;NewRevType$&quot;&lt;&gt;0 THEN &quot;Change in Quantity&quot; ELSE 0 END" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Increase_Change in Volume=CASE WHEN "Increase$"&lt;&gt;0 THEN "Chan...
+Decrease_Change in Volume=CASE WHEN "Decrease$"&lt;&gt;0 THEN "Chan...
+Decrease_IncreaseVolume_Change in Volume=CASE WHEN "Decrease_...
+...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="125">
+          <GuiSettings Plugin="LockInGui.LockInOutput.LockInOutput">
+            <Position x="2214" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormatSpecificOptions />
+              <Table>SUBSCRIPTION_ACCEL.OUTPUT.CUST_PROD_REVTYPE_RETENTION_w/PVM</Table>
+              <CreateMode>Overwrite</CreateMode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Table=SUBSCRIPTION_ACCEL.OUTPUT.CUST_PROD_REVTYPE_RETENTION_w/PVM</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInOutput" />
+        </Node>
+        <Node ToolID="126">
+          <GuiSettings Plugin="LockInGui.LockInFormula.LockInFormula">
+            <Position x="1830" y="1626" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ValidateBeforeRun value="True" />
+              <FormulaFields>
+                <FormulaField field="RetentionCategory" type="V_WString" expression="CASE WHEN &quot;RetentionCategory&quot;=&#xD;&#xA;'Decrease_Price_w/Net_Upsell' then 'Increase_DecreasePrice'&#xD;&#xA;when &quot;RetentionCategory&quot;=&#xD;&#xA;'Increase_Price_w/Net_Downsell' then 'Decrease_IncreasePrice'&#xD;&#xA;when &quot;RetentionCategory&quot;=&#xD;&#xA;'Decrease_Volume_w/Net_Upsell' then 'Increase_DecreaseVolume'&#xD;&#xA;when &quot;RetentionCategory&quot; =&#xD;&#xA;'Increase_Volume_w/Net_Downsell' then 'Decrease_IncreaseVolume'&#xD;&#xA;else &quot;RetentionCategory&quot;&#xD;&#xA;end " />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>RetentionCategory=CASE WHEN "RetentionCategory"=
+'Decrease_P...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInFormula" />
+        </Node>
+        <Node ToolID="127">
+          <GuiSettings Plugin="LockInGui.LockInSummarize.LockInSummarize">
+            <Position x="222" y="1722" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <SummarizeFields>
+                <SummarizeField field="CustName" action="GroupBy" rename="CustName" />
+                <SummarizeField field="Current Period" action="GroupBy" rename="Current Period" />
+                <SummarizeField field="Period" action="GroupBy" rename="Period" />
+                <SummarizeField field="Quantity" action="Sum" rename="Quantity" />
+                <SummarizeField field="PP Quantity" action="Sum" rename="PP Quantity" />
+                <SummarizeField field="Product" action="GroupBy" rename="Product" />
+                <SummarizeField field="Revenue Type" action="GroupBy" rename="Revenue Type" />
+              </SummarizeFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="LockInEngine.dll" EngineDllEntryPoint="AlteryxLockInSummarize" />
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="49" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="13" Connection="Output" />
+      <Destination ToolID="15" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="15" Connection="Output" />
+      <Destination ToolID="24" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="24" Connection="Output" />
+      <Destination ToolID="53" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="49" Connection="True" />
+      <Destination ToolID="13" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="102" Connection="Output" />
+      <Destination ToolID="13" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="52" Connection="Output" />
+      <Destination ToolID="54" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="53" Connection="Output" />
+      <Destination ToolID="52" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="54" Connection="True" />
+      <Destination ToolID="57" Connection="Input" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="54" Connection="False" />
+      <Destination ToolID="70" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="73" Connection="Output" />
+      <Destination ToolID="70" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="57" Connection="Output" />
+      <Destination ToolID="60" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="58" Connection="Output" />
+      <Destination ToolID="65" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="60" Connection="Output" />
+      <Destination ToolID="63" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="61" Connection="Output" />
+      <Destination ToolID="58" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="63" Connection="Output" />
+      <Destination ToolID="64" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="64" Connection="Output" />
+      <Destination ToolID="61" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="65" Connection="Output" />
+      <Destination ToolID="66" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="66" Connection="Output" />
+      <Destination ToolID="67" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="67" Connection="Output" />
+      <Destination ToolID="68" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="68" Connection="Output" />
+      <Destination ToolID="73" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="69" Connection="Output" />
+      <Destination ToolID="71" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="70" Connection="Output" />
+      <Destination ToolID="69" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="71" Connection="Output" />
+      <Destination ToolID="72" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="12" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="Output" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="6" Connection="Output" />
+      <Destination ToolID="7" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="7" Connection="Output" />
+      <Destination ToolID="9" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="8" Connection="Output" />
+      <Destination ToolID="9" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="9" Connection="Output" />
+      <Destination ToolID="11" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="10" Connection="Output" />
+      <Destination ToolID="14" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="11" Connection="Output" />
+      <Destination ToolID="10" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="12" Connection="Output" />
+      <Destination ToolID="10" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="14" Connection="Output" />
+      <Destination ToolID="22" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="22" Connection="Output" />
+      <Destination ToolID="42" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="41" Connection="Output" />
+      <Destination ToolID="45" Connection="Input" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="43" Connection="Output" />
+      <Destination ToolID="45" Connection="Input" />
+    </Connection>
+    <Connection name="#3">
+      <Origin ToolID="44" Connection="Output" />
+      <Destination ToolID="45" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="42" Connection="Output" />
+      <Destination ToolID="41" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="42" Connection="Output" />
+      <Destination ToolID="43" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="42" Connection="Output" />
+      <Destination ToolID="44" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="45" Connection="Output" />
+      <Destination ToolID="48" Connection="Input" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="48" Connection="Output" />
+      <Destination ToolID="102" Connection="Input" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="48" Connection="Output" />
+      <Destination ToolID="103" Connection="Input" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="48" Connection="Output" />
+      <Destination ToolID="127" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="50" Connection="Output" />
+      <Destination ToolID="4" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="78" Connection="Output" />
+      <Destination ToolID="82" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="79" Connection="Output" />
+      <Destination ToolID="80" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="80" Connection="Output" />
+      <Destination ToolID="81" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="81" Connection="Output" />
+      <Destination ToolID="84" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="82" Connection="True" />
+      <Destination ToolID="79" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="103" Connection="Output" />
+      <Destination ToolID="79" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="83" Connection="Output" />
+      <Destination ToolID="85" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="84" Connection="Output" />
+      <Destination ToolID="83" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="85" Connection="True" />
+      <Destination ToolID="86" Connection="Input" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="85" Connection="False" />
+      <Destination ToolID="97" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="100" Connection="Output" />
+      <Destination ToolID="97" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="86" Connection="Output" />
+      <Destination ToolID="88" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="87" Connection="Output" />
+      <Destination ToolID="92" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="88" Connection="Output" />
+      <Destination ToolID="90" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="89" Connection="Output" />
+      <Destination ToolID="87" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="90" Connection="Output" />
+      <Destination ToolID="91" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="91" Connection="Output" />
+      <Destination ToolID="89" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="92" Connection="Output" />
+      <Destination ToolID="93" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="93" Connection="Output" />
+      <Destination ToolID="94" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="94" Connection="Output" />
+      <Destination ToolID="95" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="95" Connection="Output" />
+      <Destination ToolID="100" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="96" Connection="Output" />
+      <Destination ToolID="98" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="97" Connection="Output" />
+      <Destination ToolID="96" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="98" Connection="Output" />
+      <Destination ToolID="99" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="104" Connection="Output" />
+      <Destination ToolID="108" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="105" Connection="Output" />
+      <Destination ToolID="106" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="106" Connection="Output" />
+      <Destination ToolID="107" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="107" Connection="Output" />
+      <Destination ToolID="110" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="108" Connection="True" />
+      <Destination ToolID="105" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="127" Connection="Output" />
+      <Destination ToolID="105" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="109" Connection="Output" />
+      <Destination ToolID="111" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="110" Connection="Output" />
+      <Destination ToolID="109" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="111" Connection="True" />
+      <Destination ToolID="112" Connection="Input" />
+    </Connection>
+    <Connection name="#2" Wireless="True">
+      <Origin ToolID="111" Connection="False" />
+      <Destination ToolID="123" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="126" Connection="Output" />
+      <Destination ToolID="123" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="112" Connection="Output" />
+      <Destination ToolID="114" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="113" Connection="Output" />
+      <Destination ToolID="118" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="114" Connection="Output" />
+      <Destination ToolID="116" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="115" Connection="Output" />
+      <Destination ToolID="113" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="116" Connection="Output" />
+      <Destination ToolID="117" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="117" Connection="Output" />
+      <Destination ToolID="115" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="118" Connection="Output" />
+      <Destination ToolID="119" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="119" Connection="Output" />
+      <Destination ToolID="120" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="120" Connection="Output" />
+      <Destination ToolID="121" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="121" Connection="Output" />
+      <Destination ToolID="126" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="122" Connection="Output" />
+      <Destination ToolID="124" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="123" Connection="Output" />
+      <Destination ToolID="122" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="124" Connection="Output" />
+      <Destination ToolID="125" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>Step 2.1 - InDB Tech Enabler - PVM</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="9ec123da-64f4-453f-8cea-52a8303d0d55" />
+      <Telemetry>
+        <PreviousWorkflowId value="fad5516b-3cbe-43bd-8e3c-6b68a10f324d" />
+        <OriginWorkflowId value="fad5516b-3cbe-43bd-8e3c-6b68a10f324d" />
+      </Telemetry>
+      <PlatformWorkflowId value="" />
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>
