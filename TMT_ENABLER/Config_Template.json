@@ -1,0 +1,24 @@
+{
+    "ODBC config": {
+        "Data Source": "DB_NAME",
+        "User": "[ Enter your EY Email ]",
+        "Password": "[ leave blank, SSO configured ]",
+        "Server": "vn61366.east-us-2.azure.snowflakecomputing.com",
+        "Database": "DB_NAME",
+        "Schema": "INTER",
+        "Warehouse": "S",
+        "GIT_REPO": "YES",
+        "Role": "DB_NAME",
+        "Tracing(0-6)": 6,
+        "Authenticator": "externalbrowser",
+        "tables":{
+            "input": "DB_NAME.SOURCE.RAW_DATA",
+            "pbi": "DB_NAME.OUTPUT.PROCESSED_DATA"
+        },
+        "Proxy": "",
+        "NoProxy": "",
+        "Alteryx inDB Connection": {
+            "Connection name": "DB_NAME"
+        }
+    }
+}
